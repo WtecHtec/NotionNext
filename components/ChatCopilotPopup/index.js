@@ -14,15 +14,15 @@ const ChatCopilotPopup = () => {
 
   usePopupInputFix()
 
-  useEffect(() => {
-    if (window.visualViewport) {
-      const onResize = () => {
-        document.body.style.height = `${window.visualViewport?.height}px`
-      }
-      window.visualViewport.addEventListener('resize', onResize)
-      return () => window.visualViewport.removeEventListener('resize', onResize)
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (window.visualViewport) {
+  //     const onResize = () => {
+  //       document.body.style.height = `${window.visualViewport?.height}px`
+  //     }
+  //     window.visualViewport.addEventListener('resize', onResize)
+  //     return () => window.visualViewport.removeEventListener('resize', onResize)
+  //   }
+  // }, [])
   return (
     <CopilotPopup
       instructions={instructions}
