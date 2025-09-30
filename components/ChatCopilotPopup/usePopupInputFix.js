@@ -16,9 +16,21 @@ import { useEffect } from "react";
             textarea.dispatchEvent(new Event("input", { bubbles: true })); // 触发 React 同步
           }
         };
+        const handleBlur = () => {
+            // 如果是空内容，就自动填一个空格
+            if (textarea.value === " ") {
+              textarea.setRangeText(""); // 插入空格
+              textarea.dispatchEvent(new Event("input", { bubbles: true })); // 触发 React 同步
+            }
+          };
     
+
         textarea.addEventListener("focus", handleFocus);
-        return () => textarea.removeEventListener("focus", handleFocus);
+        textarea.addEventListener("blur", handleBlur);
+        return () =>  {
+            textarea.removeEventListener("focus", handleFocus);
+            textarea.removeEventListener("blur", handleBlur);
+        }
       }, []);
 
 //   useEffect(() => {
