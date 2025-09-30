@@ -12,10 +12,15 @@ import { getBaseLayoutByTheme } from '@/themes/theme'
 import { useRouter } from 'next/router'
 import { useCallback, useMemo } from 'react'
 import { getQueryParam } from '../lib/utils'
+import { CopilotKit } from '@copilotkit/react-core'
+
+import '@copilotkit/react-ui/styles.css'
+
 
 // 各种扩展插件 这个要阻塞引入
 import BLOG from '@/blog.config'
 import ExternalPlugins from '@/components/ExternalPlugins'
+import ChatCopilotPopup from '@/components/ChatCopilotPopup'
 import SEO from '@/components/SEO'
 import { zhCN } from '@clerk/localizations'
 import dynamic from 'next/dynamic'
@@ -51,14 +56,19 @@ const MyApp = ({ Component, pageProps }) => {
     [theme]
   )
 
+
   const enableClerk = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
   const content = (
     <GlobalContextProvider {...pageProps}>
-      <GLayout {...pageProps}>
-        <SEO {...pageProps} />
-        <Component {...pageProps} />
-      </GLayout>
-      <ExternalPlugins {...pageProps} />
+      <CopilotKit runtimeUrl='/api/copilotkit' showDevConsole={false}>
+        <GLayout {...pageProps}>
+          <SEO {...pageProps} />
+          <Component {...pageProps} />
+        </GLayout>
+        <ExternalPlugins {...pageProps} />
+        <ChatCopilotPopup />
+       
+      </CopilotKit>
     </GlobalContextProvider>
   )
   return (

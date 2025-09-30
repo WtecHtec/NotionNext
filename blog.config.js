@@ -65,7 +65,10 @@ const BLOG = {
     'Hi，我是一个程序员, Hi，我是一个打工人,Hi，我是一个干饭人,欢迎来到我的博客🎉',
 
   // uuid重定向至 slug
-  UUID_REDIRECT: process.env.UUID_REDIRECT || false
+  UUID_REDIRECT: process.env.UUID_REDIRECT || false,
+
+  // 智普 api key
+  ZHIPU_API_KEY:  process.env.ZHIPU_API_KEY || ''
 }
 
 module.exports = BLOG

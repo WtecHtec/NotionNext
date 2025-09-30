@@ -120,7 +120,7 @@ const LayoutBase = props => {
           )}
         </div>
 
-        <div className='fixed right-4 bottom-4 z-20'>
+        <div className='fixed left-4 bottom-4 z-20'>
           <JumpToTopButton />
         </div>
 

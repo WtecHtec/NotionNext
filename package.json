@@ -28,6 +28,9 @@
   "dependencies": {
     "@clerk/localizations": "^3.0.4",
     "@clerk/nextjs": "^5.1.5",
+    "@copilotkit/react-core": "^1.10.4",
+    "@copilotkit/react-ui": "^1.10.4",
+    "@copilotkit/runtime": "^1.10.4",
     "@headlessui/react": "^1.7.15",
     "@next/bundle-analyzer": "^12.1.1",
     "@vercel/analytics": "^1.0.0",
@@ -41,13 +44,15 @@
     "next": "14.2.4",
     "notion-client": "7.4.3",
     "notion-utils": "7.4.3",
+    "openai": "^4.98.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-facebook": "^8.1.4",
     "react-hotkeys-hook": "^4.5.0",
     "react-notion-x": "7.3.0",
     "react-share": "^5.2.2",
-    "react-tweet-embed": "~2.0.0"
+    "react-tweet-embed": "~2.0.0",
+    "use-sound": "^5.0.0"
   },
   "devDependencies": {
     "@types/node": "22.15.3",
