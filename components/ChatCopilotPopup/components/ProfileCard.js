@@ -1,7 +1,7 @@
 
  function ProfileCard() {
     return (
-      <div className="max-w-2xl mx-auto ">
+      <div className="max-w-2xl mx-auto mt-4 ">
        
   
         <div className="space-y-3 mb-6">

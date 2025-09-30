@@ -24,7 +24,7 @@ const vocabulary = `当用户请求解释英语单词的行为时，你需要完
        `
 export const  instructions = `
 # 技能
-1. 当用户发送 "关于个人", 调用tool: "userInfo"
+1. 当用户发送 "关于个人"时, 回复: 一名主要写前端，偶尔也会摸一摸其他端的开发者。并且调用tool: "userInfo", 
 2. ${vocabulary}
 # 上下文
 ${context}

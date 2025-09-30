@@ -31,7 +31,7 @@
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto  rounded-xl bg-white  ">
+    <div className="w-full max-w-2xl mx-auto  rounded-xl bg-white  mt-4 ">
       {/* Word Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
