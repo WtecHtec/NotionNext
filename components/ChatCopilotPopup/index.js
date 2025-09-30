@@ -6,6 +6,8 @@ import useUserInfoTool from './useUserInfoTool'
 import useVocabularyTool from './useVocabularyTool'
 import usePopupInputFix from './usePopupInputFix'
 import LoadingDots from './components/LoadingDots'
+
+import ReactMarkdown from 'react-markdown';
 const ChatCopilotPopup = () => {
   useUserInfoTool()
   useVocabularyTool()
@@ -42,7 +44,7 @@ const ChatCopilotPopup = () => {
         if (isLoading || isGenerating) {
           renderDom = <LoadingDots />
         } else {
-          renderDom = <div> {content}</div>
+          renderDom = <ReactMarkdown >{String(content)}</ReactMarkdown>
           if (typeof message.generativeUI === 'function') {
             renderDom = message.generativeUI(arg)
           } else if (!content) {
@@ -52,7 +54,7 @@ const ChatCopilotPopup = () => {
           }
          
         }
-        return <div className='my-2'>{renderDom}</div>
+        return <div className='my-2 prose prose-neutral dark:prose-invert max-w-none'>{renderDom}</div>
       }}
     />
   )

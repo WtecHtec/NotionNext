@@ -1,7 +1,9 @@
 import context from './context'
-export const title = "up";
-export const initial = `欢迎光临我的小站 🌿
+export const title = "虚惊一场。";
+export const initial = `## 欢迎光临我的小站 🌿
+
 这里写着一些思考、一些技术，还有一些灵光一闪的念头。
+
 希望你能带走一点点灵感，就像夜空捡到的星子。`;
 const vocabulary = `当用户请求解释英语单词 或者发送单个英文单词，识别到用户想要了解英文单词意思等行为时，你需要完成：
    ##1.        拼读拆分##
