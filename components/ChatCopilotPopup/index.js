@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { CopilotPopup } from '@copilotkit/react-ui'
+import { CopilotPopup, CopilotSidebar } from '@copilotkit/react-ui'
 
 import { instructions, title, initial } from './config'
 import useUserInfoTool from './useUserInfoTool'
@@ -8,7 +8,7 @@ import usePopupInputFix from './usePopupInputFix'
 import LoadingDots from './components/LoadingDots'
 
 import ReactMarkdown from 'react-markdown';
-const ChatCopilotPopup = () => {
+const ChatCopilotPopup = ({ children}) => {
   useUserInfoTool()
   useVocabularyTool()
 
@@ -24,7 +24,7 @@ const ChatCopilotPopup = () => {
   //   }
   // }, [])
   return (
-    <CopilotPopup
+    <CopilotSidebar
       instructions={instructions}
       labels={{
         title,
@@ -56,7 +56,10 @@ const ChatCopilotPopup = () => {
         }
         return <div className='my-2 prose prose-neutral dark:prose-invert max-w-none'>{renderDom}</div>
       }}
-    />
+    >
+      { children }
+ </CopilotSidebar>
+     
   )
 }
 

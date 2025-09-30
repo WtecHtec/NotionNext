@@ -61,12 +61,14 @@ const MyApp = ({ Component, pageProps }) => {
   const content = (
     <GlobalContextProvider {...pageProps}>
       <CopilotKit runtimeUrl='/api/copilotkit' showDevConsole={false}>
+     
+        <ChatCopilotPopup >
         <GLayout {...pageProps}>
           <SEO {...pageProps} />
           <Component {...pageProps} />
         </GLayout>
         <ExternalPlugins {...pageProps} />
-        <ChatCopilotPopup />
+          </ChatCopilotPopup>
        
       </CopilotKit>
     </GlobalContextProvider>
