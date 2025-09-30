@@ -4,10 +4,9 @@ import ProfileCard from "./components/ProfileCard"
   
 
 const useUserInfoTool = () => {
-     // 个人心心
   useCopilotAction({
     name: "userInfo",
-    description: "个人介绍tool",
+    description: "关于个人、个人介绍",
     render: () => {
       return <ProfileCard />
     }
