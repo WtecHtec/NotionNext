@@ -22,15 +22,19 @@ import { useEffect } from "react";
     // 2. iOS 13+ 使用 visualViewport 修正 popup 位置
     if (window.visualViewport) {
       const handleResize = () => {
-      
+        const popup = document.querySelector(
+            ".copilotKitWindow"
+          );
+
+        if (!popup) return;
 
         const offset =
           window.innerHeight - (window.visualViewport.height || window.innerHeight);
 
         if (offset > 0) {
-            textarea.style.transform = `translateY(-${offset}px)`;
+            popup.style.transform = `translateY(-${offset}px)`;
         } else {
-            textarea.style.transform = "";
+            popup.style.transform = "";
         }
       };
 
