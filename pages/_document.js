@@ -60,7 +60,10 @@ class MyDocument extends Document {
               />
             </>
           )}
-
+       <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
           {/* 预先设置深色模式，避免闪烁 */}
           <script dangerouslySetInnerHTML={{ __html: darkModeScript }} />
         </Head>
