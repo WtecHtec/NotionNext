@@ -32,7 +32,7 @@ import { useEffect } from "react";
           window.innerHeight - (window.visualViewport.height || window.innerHeight);
 
         if (offset > 0) {
-            popup.style.transform = `translateY(-${offset}px)`;
+            popup.style.transform = `translateY(-${offset}px)  !important`;
         } else {
             popup.style.transform = "";
         }

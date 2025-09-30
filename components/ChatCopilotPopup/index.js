@@ -1,5 +1,8 @@
-import { useEffect } from 'react'
-import { CopilotPopup, CopilotSidebar } from '@copilotkit/react-ui'
+
+import { useRouter } from 'next/router';
+
+import { useEffect, useState } from 'react'
+import { CopilotPopup } from '@copilotkit/react-ui'
 
 import { instructions, title, initial } from './config'
 import useUserInfoTool from './useUserInfoTool'
@@ -9,22 +12,36 @@ import LoadingDots from './components/LoadingDots'
 
 import ReactMarkdown from 'react-markdown';
 const ChatCopilotPopup = ({ children}) => {
+ 
   useUserInfoTool()
   useVocabularyTool()
 
   usePopupInputFix()
 
+
+  // const router = useRouter();
+ 
+  // const [currentUrl, setCurrentUrl] = useState(router.asPath); // 初始 URL
+
   // useEffect(() => {
-  //   if (window.visualViewport) {
-  //     const onResize = () => {
-  //       document.body.style.height = `${window.visualViewport?.height}px`
-  //     }
-  //     window.visualViewport.addEventListener('resize', onResize)
-  //     return () => window.visualViewport.removeEventListener('resize', onResize)
-  //   }
-  // }, [])
+  //   const handleRouteChange = (url) => {
+  //     console.log('🔄 路由变更为:', url);
+      
+  //     setCurrentUrl(url);
+  //   };
+
+  //   router.events.on('routeChangeComplete', handleRouteChange);
+
+  //   // 清除监听器，防止内存泄漏
+  //   return () => {
+  //     router.events.off('routeChangeComplete', handleRouteChange);
+  //   };
+  // }, [router.events]);
+
+ 
+
   return (
-    <CopilotSidebar
+    <CopilotPopup
       instructions={instructions}
       labels={{
         title,
@@ -34,7 +51,7 @@ const ChatCopilotPopup = ({ children}) => {
         {
           title: '关于个人',
           message: '关于个人'
-        }
+        },
       ]}
       AssistantMessage={arg => {
         const { message, isLoading, isGenerating } = arg
@@ -57,8 +74,8 @@ const ChatCopilotPopup = ({ children}) => {
         return <div className='my-2 prose prose-neutral dark:prose-invert max-w-none'>{renderDom}</div>
       }}
     >
-      { children }
- </CopilotSidebar>
+
+ </CopilotPopup>
      
   )
 }
