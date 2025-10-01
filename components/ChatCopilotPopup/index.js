@@ -75,6 +75,9 @@ const ChatCopilotPopup = ({ children}) => {
         let isShow = content.replaceAll('\n', '') !== ''
         if (isLoading || isGenerating) {
           renderDom = <LoadingDots />
+          if (isGenerating && content) {
+            renderDom = <ReactMarkdown >{String(content)}</ReactMarkdown>
+          }
         } else {
           renderDom = <ReactMarkdown >{String(content)}</ReactMarkdown>
           if (typeof message.generativeUI === 'function') {
