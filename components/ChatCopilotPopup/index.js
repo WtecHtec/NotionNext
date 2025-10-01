@@ -19,24 +19,24 @@ const ChatCopilotPopup = ({ children}) => {
   usePopupInputFix()
 
 
-  // const router = useRouter();
+  const router = useRouter();
  
-  // const [currentUrl, setCurrentUrl] = useState(router.asPath); // 初始 URL
+  const [currentUrl, setCurrentUrl] = useState(router.asPath); // 初始 URL
 
-  // useEffect(() => {
-  //   const handleRouteChange = (url) => {
-  //     console.log('🔄 路由变更为:', url);
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      console.log('🔄 路由变更为:', url);
       
-  //     setCurrentUrl(url);
-  //   };
+      setCurrentUrl(`${window.location.href}`);
+    };
 
-  //   router.events.on('routeChangeComplete', handleRouteChange);
+    router.events.on('routeChangeComplete', handleRouteChange);
 
-  //   // 清除监听器，防止内存泄漏
-  //   return () => {
-  //     router.events.off('routeChangeComplete', handleRouteChange);
-  //   };
-  // }, [router.events]);
+    // 清除监听器，防止内存泄漏
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
 
  
 
@@ -52,11 +52,16 @@ const ChatCopilotPopup = ({ children}) => {
           title: '关于个人',
           message: '关于个人'
         },
+        {
+          title: '总结页面',
+          message: `总结一下该链接页面: ${currentUrl}`
+        },
       ]}
       AssistantMessage={arg => {
         const { message, isLoading, isGenerating } = arg
         let renderDom = <LoadingDots />
         const content = message.content || ''
+        const  { toolCalls, name } =  message
         let isShow = content.replaceAll('\n', '') !== ''
         if (isLoading || isGenerating) {
           renderDom = <LoadingDots />
@@ -64,7 +69,18 @@ const ChatCopilotPopup = ({ children}) => {
           renderDom = <ReactMarkdown >{String(content)}</ReactMarkdown>
           if (typeof message.generativeUI === 'function') {
             renderDom = message.generativeUI(arg)
-          } else if (!content) {
+          } else if (Array.isArray(toolCalls) && toolCalls.length) {
+            renderDom =  toolCalls.map((item) => {
+              return  <div className="flex items-center space-x-1  p-2 border border-gray-300 rounded-lg">
+              {/* 绿色的红点 */}
+              <div className="w-1 h-1 bg-blue-500 rounded-full"></div>
+              
+              {/* 灰色字体的名称 */}
+              <span className="text-gray-500 text-sm">{item.function.name}</span>
+            </div>
+            })
+          }
+          else if (!content) {
             renderDom = <div> 暂时无法回答！「不完美，但在成长中」</div>
           } else if (!isShow) {
             return null
