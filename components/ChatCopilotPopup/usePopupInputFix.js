@@ -42,6 +42,7 @@ function isIOS() {
 
           console.log("window.visualViewport:::", popup)
         if (!popup) return;
+       
 
         let  offset = window.innerHeight - (window.visualViewport.height || window.innerHeight);
 
@@ -59,6 +60,7 @@ function isIOS() {
            
         } else {
             popup.style.transform = "";
+           
         }
       };
 
@@ -69,19 +71,19 @@ function isIOS() {
 
         console.log("window.visualViewport:::", popup)
       if (!popup) return;
-      popup.style.transform = "";
+        popup.style.transform = "";
       }
 
-      textarea.addEventListener("focus", handleResize);
+      // textarea.addEventListener("focus", handleResize);
       textarea.addEventListener("blur", handleInitResize);
-      // window.visualViewport.addEventListener("resize", handleResize);
-      // window.visualViewport.addEventListener("scroll", handleResize);
+      window.visualViewport.addEventListener("resize", handleResize);
+      window.visualViewport.addEventListener("scroll", handleResize);
 
       return () => {
-        textarea.removeEventListener("focus", handleResize);
+        // textarea.removeEventListener("focus", handleResize);
         textarea.removeEventListener("blur", handleInitResize);
-        // window.visualViewport?.removeEventListener("resize", handleResize);
-        // window.visualViewport?.removeEventListener("scroll", handleResize);
+        window.visualViewport?.removeEventListener("resize", handleResize);
+        window.visualViewport?.removeEventListener("scroll", handleResize);
       };
     }
 

@@ -11,8 +11,11 @@ import usePopupInputFix from './usePopupInputFix'
 import LoadingDots from './components/LoadingDots'
 
 import ReactMarkdown from 'react-markdown';
+import { siteConfig } from '@/lib/config'
+
 const ChatCopilotPopup = ({ children}) => {
  
+
   useUserInfoTool()
   useVocabularyTool()
 
@@ -38,14 +41,13 @@ const ChatCopilotPopup = ({ children}) => {
     };
   }, [router.events]);
 
- 
 
   return (
     <CopilotPopup
-      instructions={instructions}
+      instructions={ siteConfig("AI_BOT_PROMPT") || instructions}
       labels={{
-        title,
-        initial
+        title: siteConfig("AI_BOT_TITLE") || title,
+        initial : siteConfig("AI_BOT_INITIAL") || initial,
       }}
       suggestions={[
         {
