@@ -28,7 +28,11 @@ const ChatCopilotPopup = ({ children}) => {
 
   const router = useRouter();
  
-  const [currentUrl, setCurrentUrl] = useState(router.asPath); // 初始 URL
+  const [currentUrl, setCurrentUrl] = useState("https://xujingyichang.top"); // 初始 URL
+
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
+  }, []);
 
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -67,7 +71,7 @@ const ChatCopilotPopup = ({ children}) => {
         const { message, isLoading, isGenerating } = arg
         let renderDom = <LoadingDots />
         const content = message.content || ''
-        const  { toolCalls, name } =  message
+        const  { toolCalls, id } =  message
         let isShow = content.replaceAll('\n', '') !== ''
         if (isLoading || isGenerating) {
           renderDom = <LoadingDots />
@@ -77,12 +81,12 @@ const ChatCopilotPopup = ({ children}) => {
             renderDom = message.generativeUI(arg)
           } else if (Array.isArray(toolCalls) && toolCalls.length) {
             renderDom =  toolCalls.map((item) => {
-              return  <div className="flex items-center space-x-1  p-2 border border-gray-300 rounded-lg">
+              return  <div key={item?.function?.id} className="flex items-center space-x-1  p-2 border border-gray-300 rounded-lg">
               {/* 绿色的红点 */}
               <div className="w-1 h-1 bg-blue-500 rounded-full"></div>
               
               {/* 灰色字体的名称 */}
-              <span className="text-gray-500 text-sm">{item.function.name}</span>
+              <span className="text-gray-500 text-sm">{item?.function?.name}</span>
             </div>
             })
           }
@@ -93,7 +97,7 @@ const ChatCopilotPopup = ({ children}) => {
           }
          
         }
-        return <div className='my-2 prose prose-neutral dark:prose-invert max-w-none'>{renderDom}</div>
+        return <div key={id} className='my-2 prose prose-neutral dark:prose-invert max-w-none'>{renderDom}</div>
       }}
     >
 
