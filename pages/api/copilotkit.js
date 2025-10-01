@@ -59,23 +59,23 @@ const handler = async (req, res) => {
   const runtime = new CopilotRuntime({
     actions: ({ properties, url }) => {
       return [
-        {
-          name: 'getWebpageContent',
-          description: 'Fetch and return webpage text',
-          parameters: [
-            {
-              name: 'url',
-              type: 'string',
-              description: 'web page url',
-              required: true
-            }
-          ],
-          handler: async ({url}) => {
-            // do something with the userId
-            // return the user data
-            return await  fetchWebContent(`https://r.jina.ai/${url}`)
-          },
-        }
+        // {
+        //   name: 'getWebpageContent',
+        //   description: 'Fetch and return webpage text',
+        //   parameters: [
+        //     {
+        //       name: 'url',
+        //       type: 'string',
+        //       description: 'web page url',
+        //       required: true
+        //     }
+        //   ],
+        //   handler: async ({url}) => {
+        //     // do something with the userId
+        //     // return the user data
+        //     return await  fetchWebContent(`https://r.jina.ai/${url}`)
+        //   },
+        // }
       ]
     }
   })

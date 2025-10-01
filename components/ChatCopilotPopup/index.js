@@ -8,10 +8,12 @@ import { instructions, title, initial } from './config'
 import useUserInfoTool from './useUserInfoTool'
 import useVocabularyTool from './useVocabularyTool'
 import usePopupInputFix from './usePopupInputFix'
+import useWebpageContent from './useWebpageContent'
 import LoadingDots from './components/LoadingDots'
 
 import ReactMarkdown from 'react-markdown';
 import { siteConfig } from '@/lib/config'
+
 
 const ChatCopilotPopup = ({ children}) => {
  
@@ -20,6 +22,8 @@ const ChatCopilotPopup = ({ children}) => {
   useVocabularyTool()
 
   usePopupInputFix()
+
+  useWebpageContent()
 
 
   const router = useRouter();
