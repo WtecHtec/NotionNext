@@ -68,7 +68,9 @@ const BLOG = {
   UUID_REDIRECT: process.env.UUID_REDIRECT || false,
 
   // 智普 api key
-  ZHIPU_API_KEY:  process.env.ZHIPU_API_KEY || ''
+  ZHIPU_API_KEY:  process.env.ZHIPU_API_KEY || '',
+
+  MCP_SERVERS: process.env.MCP_SERVERS || [ ],
 }
 
 module.exports = BLOG

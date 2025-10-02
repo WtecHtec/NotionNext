@@ -1,6 +1,6 @@
 import { useCopilotAction } from '@copilotkit/react-core'
 
-import VocabularyCard from './components/VocabularyCard'
+import VocabularyCard from '../components/VocabularyCard'
 
 
 const useVocabularyTool = () => {

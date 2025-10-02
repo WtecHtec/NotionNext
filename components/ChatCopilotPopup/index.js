@@ -5,25 +5,29 @@ import { useEffect, useState } from 'react'
 import { CopilotPopup } from '@copilotkit/react-ui'
 
 import { instructions, title, initial } from './config'
-import useUserInfoTool from './useUserInfoTool'
-import useVocabularyTool from './useVocabularyTool'
-import usePopupInputFix from './usePopupInputFix'
-import useWebpageContent from './useWebpageContent'
+import useUserInfoTool from './hooks/useUserInfoTool'
+import useVocabularyTool from './hooks/useVocabularyTool'
+import usePopupInputFix from './hooks/usePopupInputFix'
+import useWebpageContent from './hooks/useWebpageContent'
+import useToolRenderer from './hooks/useToolRenderer'
 import LoadingDots from './components/LoadingDots'
 
 import ReactMarkdown from 'react-markdown';
 import { siteConfig } from '@/lib/config'
 
 
+
 const ChatCopilotPopup = ({ children}) => {
  
 
+  // useMcpServerManager()
   useUserInfoTool()
   useVocabularyTool()
 
   usePopupInputFix()
 
-  useWebpageContent()
+  // useWebpageContent()
+  useToolRenderer()
 
 
   const router = useRouter();
@@ -51,6 +55,8 @@ const ChatCopilotPopup = ({ children}) => {
 
 
   return (
+    <>
+
     <CopilotPopup
       instructions={ siteConfig("AI_BOT_PROMPT") || instructions}
       labels={{
@@ -69,6 +75,7 @@ const ChatCopilotPopup = ({ children}) => {
       ]}
       AssistantMessage={arg => {
         const { message, isLoading, isGenerating } = arg
+        console.log('🔄 message:', arg);
         let renderDom = <LoadingDots />
         const content = message.content || ''
         const  { toolCalls, id } =  message
@@ -105,7 +112,7 @@ const ChatCopilotPopup = ({ children}) => {
     >
 
  </CopilotPopup>
-     
+ </>
   )
 }
 

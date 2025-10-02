@@ -1,6 +1,6 @@
-import {  useCopilotAction } from "@copilotkit/react-core"; 
+import {  useCopilotAction, useCopilotChat } from "@copilotkit/react-core"; 
 
-import ProfileCard from "./components/ProfileCard"
+import ProfileCard from "../components/ProfileCard"
   
 
 const useUserInfoTool = () => {

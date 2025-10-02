@@ -5,7 +5,7 @@ import {
   copilotRuntimeNextJSPagesRouterEndpoint
 } from '@copilotkit/runtime'
 import OpenAI from 'openai'
-
+import { experimental_createMCPClient } from "ai"; 
 const apiKey =
   BLOG.ZHIPU_API_KEY || ''
 if (!apiKey) {
@@ -19,6 +19,8 @@ async function customFetch(url, options) {
 
   // 这里示范替换 URL 和 headers，假设智谱API地址是 https://api.zhipu.com/v1/chat/completions
   const newUrl = 'https://open.bigmodel.cn/api/paas/v4/chat/completions'
+  // github model 
+  // const newUrl = 'https://models.github.ai/inference/chat/completions'
   const originalBody = JSON.parse(options.body)
   const newBody = { ...originalBody, model: 'glm-4.5-flash' }
   newBody.messages = newBody.messages.map(item => {
@@ -56,7 +58,19 @@ const openai = new OpenAI({
 const serviceAdapter = new OpenAIAdapter({ openai })
 
 const handler = async (req, res) => {
+  const mcpServers = BLOG.MCP_SERVERS
   const runtime = new CopilotRuntime({
+    mcpServers: [
+      ...mcpServers
+    ],
+    async createMCPClient(config) {
+      return await experimental_createMCPClient({
+        transport: {
+          type: "sse",
+          url: config.endpoint,
+        },
+      })
+    },
     actions: ({ properties, url }) => {
       return [
         // {

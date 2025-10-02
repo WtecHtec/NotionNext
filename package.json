@@ -16,7 +16,7 @@
     "url": "http://tangly1024.com"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -H 0.0.0.0 -p 3000",
     "build": "next build",
     "start": "next start",
     "post-build": "next-sitemap --config next-sitemap.config.js",
@@ -34,6 +34,7 @@
     "@headlessui/react": "^1.7.15",
     "@next/bundle-analyzer": "^12.1.1",
     "@vercel/analytics": "^1.0.0",
+    "ai": "^5.0.59",
     "algoliasearch": "^4.18.0",
     "axios": "^1.7.2",
     "feed": "^4.2.2",
