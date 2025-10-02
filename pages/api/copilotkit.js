@@ -58,7 +58,12 @@ const openai = new OpenAI({
 const serviceAdapter = new OpenAIAdapter({ openai })
 
 const handler = async (req, res) => {
-  const mcpServers = JSON.parse(BLOG.MCP_SERVERS || '[]')
+  let mcpServers = []
+  if (typeof BLOG.MCP_SERVERS === 'string') {
+    mcpServers = JSON.parse(BLOG.MCP_SERVERS || '[]')
+  } else {
+    mcpServers = Array.isArray(BLOG.MCP_SERVERS) ? BLOG.MCP_SERVERS : []
+  }
   const runtime = new CopilotRuntime({
     mcpServers: [
       ...mcpServers
