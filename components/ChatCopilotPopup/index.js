@@ -78,7 +78,6 @@ const ChatCopilotPopup = ({ children}) => {
       ]}
       AssistantMessage={arg => {
         const { message, isLoading, isGenerating } = arg
-        console.log('🔄 message:', arg);
         let renderDom = <LoadingDots />
         const content = message.content || ''
         const  { toolCalls, id } =  message
