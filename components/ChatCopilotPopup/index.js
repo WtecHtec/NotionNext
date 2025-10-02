@@ -10,6 +10,7 @@ import useVocabularyTool from './hooks/useVocabularyTool'
 import usePopupInputFix from './hooks/usePopupInputFix'
 import useWebpageContent from './hooks/useWebpageContent'
 import useToolRenderer from './hooks/useToolRenderer'
+import useShowWeather from './hooks/useShowWeather'
 import LoadingDots from './components/LoadingDots'
 
 import ReactMarkdown from 'react-markdown';
@@ -28,6 +29,8 @@ const ChatCopilotPopup = ({ children}) => {
 
   // useWebpageContent()
   useToolRenderer()
+
+  useShowWeather()
 
 
   const router = useRouter();
