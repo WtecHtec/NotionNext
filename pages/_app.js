@@ -10,7 +10,7 @@ import useAdjustStyle from '@/hooks/useAdjustStyle'
 import { GlobalContextProvider } from '@/lib/global'
 import { getBaseLayoutByTheme } from '@/themes/theme'
 import { useRouter } from 'next/router'
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState, useEffect } from 'react'
 import { getQueryParam } from '../lib/utils'
 import { CopilotKit } from '@copilotkit/react-core'
 
@@ -38,6 +38,13 @@ const MyApp = ({ Component, pageProps }) => {
   // 一些可能出现 bug 的样式，可以统一放入该钩子进行调整
   useAdjustStyle()
 
+  const [isCopilotReady, setIsCopilotReady] = useState(false)
+
+useEffect(() => {
+  // 确保 CopilotKit 上下文已准备好
+  setIsCopilotReady(true)
+}, [])
+
   const route = useRouter()
   const theme = useMemo(() => {
     return (
@@ -59,8 +66,9 @@ const MyApp = ({ Component, pageProps }) => {
 
   const enableClerk = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
   const content = (
+    <CopilotKit runtimeUrl='/api/copilotkit' showDevConsole={false}>
     <GlobalContextProvider {...pageProps}>
-      <CopilotKit runtimeUrl='/api/copilotkit' showDevConsole={false}>
+    
      
       
         <GLayout {...pageProps}>
@@ -68,11 +76,15 @@ const MyApp = ({ Component, pageProps }) => {
           <Component {...pageProps} />
         </GLayout>
         <ExternalPlugins {...pageProps} />
-        <ChatCopilotPopup >
-          </ChatCopilotPopup>
+        {isCopilotReady && (
+          <ChatCopilotPopup  />
+        )}
+     
+        
        
-      </CopilotKit>
+    
     </GlobalContextProvider>
+    </CopilotKit>
   )
   return (
     <>
