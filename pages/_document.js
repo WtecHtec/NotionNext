@@ -68,6 +68,8 @@ class MyDocument extends Document {
           <script dangerouslySetInnerHTML={{ __html: darkModeScript }} />
           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2463152068592975"
      crossorigin="anonymous"></script>
+
+        <meta name="google-site-verification" content="3Mfwnw6fQp9Pk18GY2h4QfuB14utEF5jnd2OjeTTtH0" />
         </Head>
 
         <body>
