@@ -239,7 +239,12 @@ const nextConfig = {
     //    )
     //  })
     
-
+    
+    // config.re solve.alias['katex/dist/katex.min.css'] = false;
+    config.module.rules.push({
+      test: /katex\.min\.css$/,
+      use: 'null-loader',
+    });
     // Enable source maps in development mode
     if (process.env.NODE_ENV_API === 'development') {
       config.devtool = 'source-map'

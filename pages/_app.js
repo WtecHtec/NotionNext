@@ -12,7 +12,7 @@ import { getBaseLayoutByTheme } from '@/themes/theme'
 import { useRouter } from 'next/router'
 import { useCallback, useMemo, useState, useEffect } from 'react'
 import { getQueryParam } from '../lib/utils'
-// import { CopilotKit } from '@copilotkit/react-core'
+import { CopilotKit } from '@copilotkit/react-core'
 
 import '@copilotkit/react-ui/styles.css'
 
@@ -25,10 +25,10 @@ import SEO from '@/components/SEO'
 import { zhCN } from '@clerk/localizations'
 import dynamic from 'next/dynamic'
 
-const CopilotKit = dynamic(
-  () => import('@copilotkit/react-core').then(mod => ({ default: mod.CopilotKit })),
-  { ssr: false } // 关键：禁用服务端渲染，完全避免服务端导入
-)
+// const CopilotKit = dynamic(
+//   () => import('@copilotkit/react-core').then(mod => ({ default: mod.CopilotKit })),
+//   { ssr: false } // 关键：禁用服务端渲染，完全避免服务端导入
+// )
 
 // import { ClerkProvider } from '@clerk/nextjs'
 const ClerkProvider = dynamic(() =>
