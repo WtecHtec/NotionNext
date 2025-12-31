@@ -216,11 +216,18 @@ const nextConfig = {
       // })
 
           // 忽略 katex CSS 文件，避免 webpack 处理
-    config.module.rules.push({
-      test: /node_modules[\\/]katex[\\/]dist[\\/]katex\.min\.css$/,
-      use: 'ignore-loader'
-    })
+    // config.module.rules.push({
+    //   test: /node_modules[\\/]katex[\\/]dist[\\/]katex\.min\.css$/,
+    //   use: 'ignore-loader'
+    // })
+
+     // 修复 katex CSS 导入问题：使用 alias 重定向到空模块
+     config.resolve.alias['katex/dist/katex.min.css'] = path.resolve(
+      __dirname,
+      'lib/utils/empty-css.js'
+    )
     
+
     // Enable source maps in development mode
     if (process.env.NODE_ENV_API === 'development') {
       config.devtool = 'source-map'
