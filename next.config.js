@@ -221,12 +221,20 @@ const nextConfig = {
     //   use: 'ignore-loader'
     // })
 
-     // 修复 katex CSS 导入问题：使用 alias 重定向到空模块
-     config.resolve.alias['katex/dist/katex.min.css'] = path.resolve(
-      __dirname,
-      'lib/utils/empty-css.js'
+    
+    // 修复 katex CSS 导入问题（Next.js 14 兼容方案）
+    // 使用 NormalModuleReplacementPlugin 在 webpack 构建阶段替换导入
+    const emptyCssPath = path.resolve(__dirname, 'lib/utils/empty-css.js')
+    
+    config.plugins.push(
+      new webpack.NormalModuleReplacementPlugin(
+        /katex\/dist\/katex\.min\.css$/,
+        emptyCssPath
+      )
     )
     
+    // 同时使用 alias 作为备用
+    config.resolve.alias['katex/dist/katex.min.css'] = emptyCssPath
 
     // Enable source maps in development mode
     if (process.env.NODE_ENV_API === 'development') {
