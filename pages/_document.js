@@ -70,6 +70,12 @@ class MyDocument extends Document {
      crossorigin="anonymous"></script>
 
         <meta name="google-site-verification" content="3Mfwnw6fQp9Pk18GY2h4QfuB14utEF5jnd2OjeTTtH0" />
+        <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+  integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
+  crossOrigin="anonymous"
+/>
         </Head>
 
         <body>
