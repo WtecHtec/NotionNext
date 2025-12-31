@@ -225,22 +225,20 @@ const nextConfig = {
     // 修复 katex CSS 导入问题（Next.js 14 兼容方案）
     // 使用 NormalModuleReplacementPlugin 在 webpack 构建阶段替换导入
      // 修复 katex CSS 导入问题
-     const emptyCssPath = path.resolve(__dirname, 'lib/utils/empty-css.js')
+    //  const emptyCssPath = path.resolve(__dirname, 'lib/utils/empty-css.js')
     
-     const katexCssPatterns = [
-       /^katex\/dist\/katex\.min\.css$/,
-       /katex\/dist\/katex\.min\.css$/,
-       /node_modules[\\/]katex[\\/]dist[\\/]katex\.min\.css$/,
-     ]
+    //  const katexCssPatterns = [
+    //    /^katex\/dist\/katex\.min\.css$/,
+    //    /katex\/dist\/katex\.min\.css$/,
+    //    /node_modules[\\/]katex[\\/]dist[\\/]katex\.min\.css$/,
+    //  ]
      
-     katexCssPatterns.forEach(pattern => {
-       config.plugins.push(
-         new webpack.NormalModuleReplacementPlugin(pattern, emptyCssPath)
-       )
-     })
+    //  katexCssPatterns.forEach(pattern => {
+    //    config.plugins.push(
+    //      new webpack.NormalModuleReplacementPlugin(pattern, emptyCssPath)
+    //    )
+    //  })
     
-    // 同时使用 alias 作为备用
-    config.resolve.alias['katex/dist/katex.min.css'] = emptyCssPath
 
     // Enable source maps in development mode
     if (process.env.NODE_ENV_API === 'development') {
