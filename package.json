@@ -28,9 +28,9 @@
   "dependencies": {
     "@clerk/localizations": "^3.0.4",
     "@clerk/nextjs": "^5.1.5",
-    "@copilotkit/react-core": "^1.10.4",
-    "@copilotkit/react-ui": "^1.10.4",
-    "@copilotkit/runtime": "^1.10.4",
+    "@copilotkit/react-core": "1.10.4",
+    "@copilotkit/react-ui": "1.10.4",
+    "@copilotkit/runtime": "1.10.4",
     "@headlessui/react": "^1.7.15",
     "@next/bundle-analyzer": "^12.1.1",
     "@vercel/analytics": "^1.0.0",

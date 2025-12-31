@@ -5,7 +5,7 @@ import '@/styles/utility-patterns.css'
 // core styles shared by all of react-notion-x (required)
 import '@/styles/notion.css' //  重写部分notion样式
 import 'react-notion-x/src/styles.css' // 原版的react-notion-x
-import 'katex/dist/katex.min.css'
+// import 'katex/dist/katex.min.css'
 import useAdjustStyle from '@/hooks/useAdjustStyle'
 import { GlobalContextProvider } from '@/lib/global'
 import { getBaseLayoutByTheme } from '@/themes/theme'
@@ -25,10 +25,10 @@ import SEO from '@/components/SEO'
 import { zhCN } from '@clerk/localizations'
 import dynamic from 'next/dynamic'
 
-const CopilotKit = dynamic(
-  () => import('@copilotkit/react-core').then(mod => ({ default: mod.CopilotKit })),
-  { ssr: false } // 关键：禁用服务端渲染，完全避免服务端导入
-)
+// const CopilotKit = dynamic(
+//   () => import('@copilotkit/react-core').then(mod => ({ default: mod.CopilotKit })),
+//   { ssr: false } // 关键：禁用服务端渲染，完全避免服务端导入
+// )
 
 // import { ClerkProvider } from '@clerk/nextjs'
 const ClerkProvider = dynamic(() =>
@@ -71,8 +71,9 @@ useEffect(() => {
 
 
   const enableClerk = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+      // <CopilotKit runtimeUrl='/api/copilotkit' showDevConsole={false}>
   const content = (
-    <CopilotKit runtimeUrl='/api/copilotkit' showDevConsole={false}>
+
     <GlobalContextProvider {...pageProps}>
     
      
@@ -90,7 +91,7 @@ useEffect(() => {
        
     
     </GlobalContextProvider>
-    </CopilotKit>
+
   )
   return (
     <>

@@ -208,50 +208,11 @@ const nextConfig = {
       'themes',
       THEME
     )
-       // 修复 katex CSS 导入问题
-      // config.module.rules.push({
-      //   test: /\.css$/,
-      //   include: /node_modules\/katex/,
-      //   use: ['style-loader', 'css-loader']
-      // })
-
-          // 忽略 katex CSS 文件，避免 webpack 处理
-    // config.module.rules.push({
-    //   test: /node_modules[\\/]katex[\\/]dist[\\/]katex\.min\.css$/,
-    //   use: 'ignore-loader'
-    // })
-
-    
-    // 修复 katex CSS 导入问题（Next.js 14 兼容方案）
-    // 使用 NormalModuleReplacementPlugin 在 webpack 构建阶段替换导入
-     // 修复 katex CSS 导入问题
-    //  const emptyCssPath = path.resolve(__dirname, 'lib/utils/empty-css.js')
-    
-    //  const katexCssPatterns = [
-    //    /^katex\/dist\/katex\.min\.css$/,
-    //    /katex\/dist\/katex\.min\.css$/,
-    //    /node_modules[\\/]katex[\\/]dist[\\/]katex\.min\.css$/,
-    //  ]
-     
-    //  katexCssPatterns.forEach(pattern => {
-    //    config.plugins.push(
-    //      new webpack.NormalModuleReplacementPlugin(pattern, emptyCssPath)
-    //    )
-    //  })
-    
-    
-    // config.re solve.alias['katex/dist/katex.min.css'] = false;
-    // config.module.rules.push({
-    //   test: /katex\.min\.css$/,
-    //   use: 'null-loader',
-    // });
-
-       // 1. 禁止 katex css 被 node_modules 再次处理
-       config.resolve.alias['katex/dist/katex.min.css'] = false;
+  
 
        // 2. 关闭 webpack 磁盘缓存，避免 ENOSPC
        config.cache = false;
-       
+
     // Enable source maps in development mode
     if (process.env.NODE_ENV_API === 'development') {
       config.devtool = 'source-map'
