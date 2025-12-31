@@ -241,10 +241,17 @@ const nextConfig = {
     
     
     // config.re solve.alias['katex/dist/katex.min.css'] = false;
-    config.module.rules.push({
-      test: /katex\.min\.css$/,
-      use: 'null-loader',
-    });
+    // config.module.rules.push({
+    //   test: /katex\.min\.css$/,
+    //   use: 'null-loader',
+    // });
+
+       // 1. 禁止 katex css 被 node_modules 再次处理
+       config.resolve.alias['katex/dist/katex.min.css'] = false;
+
+       // 2. 关闭 webpack 磁盘缓存，避免 ENOSPC
+       config.cache = false;
+       
     // Enable source maps in development mode
     if (process.env.NODE_ENV_API === 'development') {
       config.devtool = 'source-map'
