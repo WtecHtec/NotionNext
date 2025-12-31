@@ -196,7 +196,7 @@ const nextConfig = {
           }
         ]
       },
-  webpack: (config, { dev, isServer }) => {
+  webpack: (config, { dev, isServer, webpack }) => {
     // 动态主题：添加 resolve.alias 配置，将动态路径映射到实际路径
     config.resolve.alias['@'] = path.resolve(__dirname)
 
@@ -226,12 +226,12 @@ const nextConfig = {
     // 使用 NormalModuleReplacementPlugin 在 webpack 构建阶段替换导入
     const emptyCssPath = path.resolve(__dirname, 'lib/utils/empty-css.js')
     
-    // config.plugins.push(
-    //   new webpack.NormalModuleReplacementPlugin(
-    //     /katex\/dist\/katex\.min\.css$/,
-    //     emptyCssPath
-    //   )
-    // )
+    config.plugins.push(
+      new webpack.NormalModuleReplacementPlugin(
+        /katex\/dist\/katex\.min\.css$/,
+        emptyCssPath
+      )
+    )
     
     // 同时使用 alias 作为备用
     config.resolve.alias['katex/dist/katex.min.css'] = emptyCssPath
