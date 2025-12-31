@@ -215,6 +215,12 @@ const nextConfig = {
       //   use: ['style-loader', 'css-loader']
       // })
 
+          // 忽略 katex CSS 文件，避免 webpack 处理
+    config.module.rules.push({
+      test: /node_modules[\\/]katex[\\/]dist[\\/]katex\.min\.css$/,
+      use: 'ignore-loader'
+    })
+    
     // Enable source maps in development mode
     if (process.env.NODE_ENV_API === 'development') {
       config.devtool = 'source-map'
