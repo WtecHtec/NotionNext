@@ -208,6 +208,13 @@ const nextConfig = {
       'themes',
       THEME
     )
+       // 修复 katex CSS 导入问题
+      config.module.rules.push({
+        test: /\.css$/,
+        include: /node_modules\/katex/,
+        use: ['style-loader', 'css-loader']
+      })
+      
     // Enable source maps in development mode
     if (process.env.NODE_ENV_API === 'development') {
       config.devtool = 'source-map'
